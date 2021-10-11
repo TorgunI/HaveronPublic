@@ -80,9 +80,9 @@
     <Compile Include="HumanPersona.cs" />
     <Compile Include="Nationality.cs" />
     <Compile Include="NationalityType.cs" />
-    <Compile Include="TestNationality.cs" />
     <Compile Include="PlayerBuilder.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="SkillBuilder.cs" />
     <Compile Include="Stat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

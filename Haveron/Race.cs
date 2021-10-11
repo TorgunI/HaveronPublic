@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Haveron
 {
-    enum StatType
+    class Race
     {
-        Strength,
-        Agility,
-        Intelligent,
-        Endurance,
-        Lucky
     }
 }

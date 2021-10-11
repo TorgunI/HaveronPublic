@@ -11,9 +11,8 @@ namespace Haveron
     class PlayerBuilder
     {
         private List<ProtoMan> _players;
-        private List<string> _basicSkills;
 
-        private List<Nationality> _nationalities;
+        private SkillBuilder _skillBuilder;
         private Random _random;
 
         private int _playerID { get; set; }
@@ -21,36 +20,11 @@ namespace Haveron
 
         public PlayerBuilder()
         {
-            _basicSkills = new List<string>()
-            {
-                "Фехтование",
-                "Атлетика",
-                "Медицина",
-                "Борьба",
-                "Метание",
-                "Стрельба",
-                "Выживание",
-                "Скрытность"
-            };
-
-            _nationalities = new List<Nationality>()
-            {
-                new Nationality("Хаверон", NationalityType.Haveron),
-                new Nationality("Империя", NationalityType.Empire),
-                new Nationality("Инея", NationalityType.Inea)
-            };
-
-            //Создание рандомного персонажа из конструктора
-            _random = new Random();
-            List<string> playerBasicSkills = new List<string>()
-            {
-                _basicSkills[_random.Next(0, _basicSkills.Count())],
-                _basicSkills[_random.Next(0, _basicSkills.Count())]
-            };
+            _skillBuilder = new SkillBuilder();
 
             _players = new List<ProtoMan>()
             {
-                new Human(0, playerBasicSkills)
+                new Human(0, _skillBuilder.GetRandomBasicScills())
             };
         }
 
@@ -110,16 +84,32 @@ namespace Haveron
             if (IsIntRead(out int freePoints) == false)
                 return;
 
-            List<string> playerBasicSkills = new List<string>()
-            {
-                _basicSkills[_random.Next(0, _basicSkills.Count())],
-                _basicSkills[_random.Next(0, _basicSkills.Count())]
-            };
-
-            ProtoMan player = new Human(freePoints, playerBasicSkills);
+            ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills());
             Balance(player);
             _players.Add(player);
         }
+
+        //=======================================================================================================
+
+        //Создание персонажа с именем
+
+        //Создать конструкт в Protoman с именем персонажа
+
+        //public void CreatePlayer(string name)
+        //{
+        //    Console.Write("Имя персонажа: ");
+        //    string playerName = Console.ReadLine();
+
+        //    Console.WriteLine("Укажите уровень персонажа.");
+        //    if (IsIntRead(out int freePoints) == false)
+        //        return;
+
+        //    ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills());
+        //    Balance(player);
+        //    _players.Add(player);
+        //}
+
+        //=======================================================================================================
 
         public void Balance(ProtoMan player)
         {
@@ -174,7 +164,7 @@ namespace Haveron
 
         public void ShowCurrentPlayer()
         {
-            if(_players.Count == 0)
+            if (_players.Count == 0)
             {
                 return;
             }
