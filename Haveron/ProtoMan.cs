@@ -14,6 +14,8 @@ namespace Haveron
     {
         public string Name { get; protected set; }
 
+        //национальность
+
         public Stat Strength { get; protected set; }
         public Stat Agility { get; protected set; }
         public Stat Intelligent { get; protected set; }
@@ -38,14 +40,13 @@ namespace Haveron
 
         public int FreePoints { get; protected set; }
 
-        //private Random random = new Random();
-
         private List<Stat> _stats;
         private List<float> _limbsHealth;
 
         private List<string> _basicSkills;
 
-        public ProtoMan()
+        //Default Player
+        public ProtoMan() 
         {
             Name = "Man";
 
@@ -92,6 +93,7 @@ namespace Haveron
             };
         }
 
+        //Custom Player
         public ProtoMan(string name, float strength, float agility, float intelligent, float endurance, float lucky, List<string> currentBasicSkills)
         {
             Name = name;
@@ -172,6 +174,11 @@ namespace Haveron
         public void GetBasicSkills(List<string> playerBasicSkills)
         {
             _basicSkills = playerBasicSkills;
+        }
+
+        public void IncreaseNationalityPoints()
+        {
+
         }
 
         public void Update()

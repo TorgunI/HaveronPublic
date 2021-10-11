@@ -14,12 +14,16 @@ namespace Haveron
             GetBasicSkills(currentBasicSkills);
         }
 
-        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, List<string> currentBasicSkills) : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
+        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
+            List<string> currentBasicSkills)
+            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
         {
             SetFreePoints(0);
         }
 
-        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, int freePoints, List<string> currentBasicSkills) : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
+        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
+            int freePoints, List<string> currentBasicSkills) 
+            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
         {
             SetFreePoints(freePoints);
         }
