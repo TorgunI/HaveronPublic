@@ -29,13 +29,21 @@ namespace Haveron
             _random = new Random();
         }
 
+        //радномный выбор базовых скиллов бех повторений - НЕ СДЕЛАНО
         public List<string> GetRandomBasicScills()
         {
-            List<string> playerBasicSkills = new List<string>()
+            List<string> playerBasicSkills = new List<string>();
+            List<int> randomIndices = new List<int>();
+
+            while (playerBasicSkills.Count != 5)
             {
-                _basicSkills[_random.Next(0, _basicSkills.Count())],
-                _basicSkills[_random.Next(0, _basicSkills.Count())]
-            };
+                int randomIndex = _random.Next(0, _basicSkills.Count());
+                if (randomIndices.Contains(randomIndex))
+                    continue;
+
+                randomIndices.Add(randomIndex);
+                playerBasicSkills.Add(_basicSkills[randomIndex]);
+            }
 
             return playerBasicSkills;
         }

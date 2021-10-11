@@ -8,22 +8,25 @@ namespace Haveron
 {
     class Human : ProtoMan
     {
-        public Human(int freePoints, List<string> currentBasicSkills) : base()
+        //Создание стандартного человека нулевого уровня
+        public Human(int freePoints, List<string> currentBasicSkills, Nationality nationality, Race race) : base()
         {
             SetFreePoints(freePoints);
             GetBasicSkills(currentBasicSkills);
         }
 
+        //Создание рандомного человека нулевого уровня
         public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
-            List<string> currentBasicSkills)
-            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
+            List<string> currentBasicSkills, Nationality nationality, Race race)
+            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills, nationality, race)
         {
             SetFreePoints(0);
         }
 
+        //Создание собственного человека
         public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
-            int freePoints, List<string> currentBasicSkills) 
-            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills)
+            int freePoints, List<string> currentBasicSkills, Nationality nationality, Race race) 
+            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills, nationality, race)
         {
             SetFreePoints(freePoints);
         }

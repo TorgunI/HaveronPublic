@@ -37,4 +37,13 @@ namespace Haveron
             }
         }
     }
+
+    enum StatType
+    {
+        Strength,
+        Agility,
+        Intelligent,
+        Endurance,
+        Lucky
+    }
 }

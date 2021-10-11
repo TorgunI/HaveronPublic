@@ -13,6 +13,8 @@ namespace Haveron
     abstract class ProtoMan
     {
         public string Name { get; protected set; }
+        public Race Race { get; protected set; }
+        public Nationality Nationality { get; protected set; }
 
         public Stat Strength { get; protected set; }
         public Stat Agility { get; protected set; }
@@ -40,13 +42,14 @@ namespace Haveron
 
         private List<Stat> _stats;
         private List<float> _limbsHealth;
-
         private List<string> _basicSkills;
 
         //Default Player
         public ProtoMan() 
         {
             Name = "Man";
+            Race = new Race("Человек", RaceType.Human);
+            Nationality = new Nationality("Хаверон", NationalityType.Haveron);
 
             Strength = new Stat("Сила", 5, StatType.Strength);
             Agility = new Stat("Ловкость", 5, StatType.Agility);
@@ -92,15 +95,18 @@ namespace Haveron
         }
 
         //Custom Player
-        public ProtoMan(string name, float strength, float agility, float intelligent, float endurance, float lucky, List<string> currentBasicSkills)
+        public ProtoMan(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
+            List<string> currentBasicSkills, Nationality nationality, Race race)
         {
             Name = name;
+            Race = race;
+            Nationality = nationality;
 
-            Strength = new Stat("Сила", strength, StatType.Strength);
-            Agility = new Stat("Ловкость", agility, StatType.Agility);
-            Intelligent = new Stat("Интеллект", intelligent, StatType.Intelligent);
-            Endurance = new Stat("Выносливость", endurance, StatType.Endurance);
-            Lucky = new Stat("Удача", lucky, StatType.Lucky);
+            //Strength = new Stat("Сила", strength, StatType.Strength);
+            //Agility = new Stat("Ловкость", agility, StatType.Agility);
+            //Intelligent = new Stat("Интеллект", intelligent, StatType.Intelligent);
+            //Endurance = new Stat("Выносливость", endurance, StatType.Endurance);
+            //Lucky = new Stat("Удача", lucky, StatType.Lucky);
 
             Strength.SetValue(strength);
             Agility.SetValue(agility);
@@ -108,41 +114,41 @@ namespace Haveron
             Endurance.SetValue(endurance);
             Lucky.SetValue(lucky);
 
-            HP = (Strength.Value + Agility.Value + Endurance.Value) * 2;
-            Mana = (Intelligent.Value + Endurance.Value) / 2;
-            OD = (Agility.Value + Endurance.Value) / 2;
-            PersonalInitiation = (Intelligent.Value + Agility.Value) / 2;
-            PersonalDamage = (Strength.Value + Agility.Value) / 5;
-            Accurasy = (Intelligent.Value + Agility.Value) / 5;
-            ProtactionPointer = (Strength.Value + Agility.Value + Endurance.Value) / 3;
+            //HP = (Strength.Value + Agility.Value + Endurance.Value) * 2;
+            //Mana = (Intelligent.Value + Endurance.Value) / 2;
+            //OD = (Agility.Value + Endurance.Value) / 2;
+            //PersonalInitiation = (Intelligent.Value + Agility.Value) / 2;
+            //PersonalDamage = (Strength.Value + Agility.Value) / 5;
+            //Accurasy = (Intelligent.Value + Agility.Value) / 5;
+            //ProtactionPointer = (Strength.Value + Agility.Value + Endurance.Value) / 3;
 
-            HeadHealth = HP * 0.1f;
-            BodyHealth = HP * 0.3f;
-            StomachHealth = HP * 0.2f;
-            RightHandHealth = HP * 0.1f;
-            LeftHandHealth = HP * 0.1f;
-            RightLegHealth = HP * 0.1f;
-            LeftLegHealth = HP * 0.1f;
+            //HeadHealth = HP * 0.1f;
+            //BodyHealth = HP * 0.3f;
+            //StomachHealth = HP * 0.2f;
+            //RightHandHealth = HP * 0.1f;
+            //LeftHandHealth = HP * 0.1f;
+            //RightLegHealth = HP * 0.1f;
+            //LeftLegHealth = HP * 0.1f;
 
-            _stats = new List<Stat>()
-            {
-                Strength,
-                Agility,
-                Intelligent,
-                Endurance,
-                Lucky
-            };
+            //_stats = new List<Stat>()
+            //{
+            //    Strength,
+            //    Agility,
+            //    Intelligent,
+            //    Endurance,
+            //    Lucky
+            //};
 
-            _limbsHealth = new List<float>()
-            {
-                HeadHealth,
-                BodyHealth,
-                StomachHealth,
-                RightHandHealth,
-                LeftLegHealth,
-                RightLegHealth,
-                LeftLegHealth
-            };
+            //_limbsHealth = new List<float>()
+            //{
+            //    HeadHealth,
+            //    BodyHealth,
+            //    StomachHealth,
+            //    RightHandHealth,
+            //    LeftLegHealth,
+            //    RightLegHealth,
+            //    LeftLegHealth
+            //};
 
             _basicSkills = currentBasicSkills;
         }
@@ -218,12 +224,20 @@ namespace Haveron
             };
         }
 
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Имя:{Name}\n" +
+                $"Раса: {Race.Name}\n" +
+                $"Национальность: {Nationality.Name}\n");
+        }
+
         public void ShowStats()
         {
             foreach (var stat in _stats)
             {
                 Console.WriteLine(stat.Name + ": " + stat.Value);
             }
+            Console.WriteLine();
         }
 
         public void ShowCharacteristics()
@@ -234,7 +248,7 @@ namespace Haveron
                 $"Личная Инициация: {PersonalInitiation};\n" +
                 $"Личный Урон:{PersonalDamage};\n" +
                 $"Точность: {Accurasy}\n" +
-                $"Показатель Защиты: {ProtactionPointer}");
+                $"Показатель Защиты: {ProtactionPointer}\n");
         }
 
         public void ShowLimbsHealth()
@@ -267,7 +281,7 @@ namespace Haveron
 
             for (int i = 0; i < _basicSkills.Count; i++)
             {
-                Console.WriteLine($"{i} - {_basicSkills[i]}");
+                Console.WriteLine($"{i + 1} - {_basicSkills[i]}");
             }
             Console.WriteLine();
         }

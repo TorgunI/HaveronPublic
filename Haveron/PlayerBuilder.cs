@@ -13,6 +13,8 @@ namespace Haveron
         private List<ProtoMan> _players;
 
         private SkillBuilder _skillBuilder;
+        private HumanPersona _humanPersona;
+
         private Random _random;
 
         private int _playerID { get; set; }
@@ -21,11 +23,15 @@ namespace Haveron
         public PlayerBuilder()
         {
             _skillBuilder = new SkillBuilder();
+            _humanPersona = new HumanPersona();
 
             _players = new List<ProtoMan>()
             {
-                new Human(0, _skillBuilder.GetRandomBasicScills())
+                new Human(0, _skillBuilder.GetRandomBasicScills(), 
+                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace())
             };
+
+            _random = new Random();
         }
 
         public void ChoosePlayer()
@@ -84,7 +90,8 @@ namespace Haveron
             if (IsIntRead(out int freePoints) == false)
                 return;
 
-            ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills());
+            ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills(), 
+                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
             Balance(player);
             _players.Add(player);
         }
@@ -110,6 +117,8 @@ namespace Haveron
         //}
 
         //=======================================================================================================
+
+
 
         public void Balance(ProtoMan player)
         {
@@ -169,15 +178,13 @@ namespace Haveron
                 return;
             }
 
-
-            Console.WriteLine($"Имя: {_players[_playerID].Name}\n");
+            _players[_playerID].ShowInfo();
 
             _players[_playerID].ShowStats();
-            Console.WriteLine();
 
             _players[_playerID].ShowCharacteristics();
-            Console.WriteLine();
 
+            //Работа с курсором для консоли| Вывод HP конечностей
             int ConsoleX = Console.CursorLeft;
             int ConsoleY = Console.CursorTop;
 
