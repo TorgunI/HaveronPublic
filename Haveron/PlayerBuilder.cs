@@ -10,17 +10,17 @@ namespace Haveron
 {
     class PlayerBuilder
     {
-        private int _playerID { get; set; }
-
         private List<ProtoMan> _players;
+        private List<string> _basicSkills;
+
+        private List<Nationality> _nationalities;
         private Random _random;
 
-        private List<string> _basicSkills;
+        private int _playerID { get; set; }
+
 
         public PlayerBuilder()
         {
-            _random = new Random();
-
             _basicSkills = new List<string>()
             {
                 "Фехтование",
@@ -33,6 +33,15 @@ namespace Haveron
                 "Скрытность"
             };
 
+            _nationalities = new List<Nationality>()
+            {
+                new Nationality("Хаверон", NationalityType.Haveron),
+                new Nationality("Империя", NationalityType.Empire),
+                new Nationality("Инея", NationalityType.Inea)
+            };
+
+            //Создание рандомного персонажа из конструктора
+            _random = new Random();
             List<string> playerBasicSkills = new List<string>()
             {
                 _basicSkills[_random.Next(0, _basicSkills.Count())],

@@ -14,8 +14,6 @@ namespace Haveron
     {
         public string Name { get; protected set; }
 
-        //национальность
-
         public Stat Strength { get; protected set; }
         public Stat Agility { get; protected set; }
         public Stat Intelligent { get; protected set; }
@@ -176,10 +174,10 @@ namespace Haveron
             _basicSkills = playerBasicSkills;
         }
 
-        public void IncreaseNationalityPoints()
-        {
+        //public void IncreaseNationalityPoints()
+        //{
 
-        }
+        //}
 
         public void Update()
         {
