@@ -197,7 +197,7 @@ namespace Haveron
 
         public bool IsPlayerChosen(out int userInput)
         {
-            if (IsIntRead(out userInput) == false || userInput > _players.Count)
+            if (IsIntRead(out userInput) == false || userInput > _players.Count || userInput == 0)
             {
                 Console.WriteLine("Такого игрока нет!");
                 return false;
