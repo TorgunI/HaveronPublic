@@ -27,11 +27,67 @@ namespace Haveron
 
             _players = new List<ProtoMan>()
             {
-                new Human(0, _skillBuilder.GetRandomBasicScills(), 
+                new Human(_skillBuilder.GetRandomBasicScills(),
                 _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace())
             };
 
             _random = new Random();
+        }
+
+        public void CreationPlayerMenu()
+        {
+            Console.WriteLine($"[1] - Создание рандомного игрока нулевого уровня\n" +
+                $"[2] - Создание радномного человека определенного уровня\n" +
+                $"[3] - Создание собственного игрока\n");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    CreatePlayer();
+                    break;
+                case "2":
+                    CreateLvlPlayer();
+                    break;
+                case "3":
+                    CreatePeculiarPlayer();
+                    break;
+                default:
+                    Console.WriteLine("Неправильная команда!");
+                    break;
+            }
+        }
+
+        public void Balance(ProtoMan player)
+        {
+            int distributiveStatValue;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Stat stat = player.GetStatByType((StatType)i);
+
+                if (stat.Value < 2)
+                    break;
+
+                distributiveStatValue = _random.Next(1, (int)stat.Value - 2);
+                player.GetStatByType(stat.StatType).ChangeValue(distributiveStatValue, '-');
+
+                player.GetStatByType((StatType)_random.Next(0, 5)).
+                    ChangeValue(distributiveStatValue, '+');
+            }
+            DistribuveFreeStat(player);
+            player.Update();
+        }
+
+        public void DistribuveFreeStat(ProtoMan player)
+        {
+            while (player.FreePoints != 0)
+            {
+                int point = _random.Next(1, player.FreePoints);
+
+                player.GetStatByType((StatType)_random.Next(0, 5)).
+                    ChangeValue((point), '+');
+                player.SubtractFreePoint(point);
+            }
         }
 
         public void ChoosePlayer()
@@ -78,78 +134,6 @@ namespace Haveron
             {
                 _players[_playerID].GetStatByType((StatType)userInput).ChangeValue(userValue, userSign);
                 _players[_playerID].Update();
-            }
-        }
-
-        public void CreatePlayer()
-        {
-            //Console.Write("Имя персонажа: ");
-            //string playerName = Console.ReadLine();
-
-            Console.WriteLine("Укажите уровень персонажа.");
-            if (IsIntRead(out int freePoints) == false)
-                return;
-
-            ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills(), 
-                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
-            Balance(player);
-            _players.Add(player);
-        }
-
-        //=======================================================================================================
-
-        //Создание персонажа с именем
-
-        //Создать конструкт в Protoman с именем персонажа
-
-        //public void CreatePlayer(string name)
-        //{
-        //    Console.Write("Имя персонажа: ");
-        //    string playerName = Console.ReadLine();
-
-        //    Console.WriteLine("Укажите уровень персонажа.");
-        //    if (IsIntRead(out int freePoints) == false)
-        //        return;
-
-        //    ProtoMan player = new Human(freePoints, _skillBuilder.GetRandomBasicScills());
-        //    Balance(player);
-        //    _players.Add(player);
-        //}
-
-        //=======================================================================================================
-
-
-
-        public void Balance(ProtoMan player)
-        {
-            int distributiveStatValue;
-
-            for (int i = 0; i < 4; i++)
-            {
-                Stat stat = player.GetStatByType((StatType)i);
-
-                if (stat.Value < 2)
-                    break;
-
-                distributiveStatValue = _random.Next(1, (int)stat.Value - 2);
-                player.GetStatByType(stat.StatType).ChangeValue(distributiveStatValue, '-');
-
-                player.GetStatByType((StatType)_random.Next(0, 5)).
-                    ChangeValue(distributiveStatValue, '+');
-            }
-            DistribuveFreeStat(player);
-            player.Update();
-        }
-
-        public void DistribuveFreeStat(ProtoMan player)
-        {
-            while (player.FreePoints != 0)
-            {
-                int point = _random.Next(1, player.FreePoints);
-
-                player.GetStatByType((StatType)_random.Next(0, 5)).
-                    ChangeValue((point), '+');
-                player.SubtractFreePoint(point);
             }
         }
 
@@ -216,6 +200,17 @@ namespace Haveron
             return true;
         }
 
+        //public bool IsFloatRead(out float userInput)
+        //{
+        //    Console.Write("Введите число: ");
+        //    if (float.TryParse(Console.ReadLine(), out userInput) == false || userInput < 0)
+        //    {
+        //        Console.WriteLine("Введено неправильное число ");
+        //        return false;
+        //    }
+        //    return true;
+        //}
+
         public bool IsCharRead(out char sign)
         {
             Console.Write("Введите знак: ");
@@ -225,6 +220,58 @@ namespace Haveron
                 return false;
             }
             return true;
+        }
+
+        private void CreatePlayer()
+        {
+            ProtoMan player = new Human(_skillBuilder.GetRandomBasicScills(),
+                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
+            Balance(player);
+            _players.Add(player);
+        }
+
+        private void CreateLvlPlayer()
+        {
+            Console.WriteLine("Укажите уровень персонажа.");
+            if (IsIntRead(out int freePoints) == false)
+                return;
+
+            ProtoMan player = new Human(_skillBuilder.GetRandomBasicScills(),
+                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace(), freePoints);
+            Balance(player);
+            _players.Add(player);
+        }
+
+        private void CreatePeculiarPlayer()
+        {
+            Console.WriteLine("Укажите значение силы:");
+            if (IsIntRead(out int strength) == false)
+                return;
+
+            Console.WriteLine("Укажите ловкости:");
+            if (IsIntRead(out int agility) == false)
+                return;
+
+            Console.WriteLine("Укажите интеллекта:");
+            if (IsIntRead(out int intelligent) == false)
+                return;
+
+            Console.WriteLine("Укажите выносливости:");
+            if (IsIntRead(out int endurance) == false)
+                return;
+
+            Console.WriteLine("Укажите удачи:");
+            if (IsIntRead(out int lucky) == false)
+                return;
+
+            Console.WriteLine("Укажите уровень персонажа.");
+            if (IsIntRead(out int freePoints) == false)
+                return;
+
+            ProtoMan player = new Human(strength, agility, intelligent, endurance, lucky, freePoints, _skillBuilder.GetRandomBasicScills(),
+               _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
+            Balance(player);
+            _players.Add(player);
         }
     }
 }

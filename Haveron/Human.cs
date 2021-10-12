@@ -8,25 +8,30 @@ namespace Haveron
 {
     class Human : ProtoMan
     {
-        //Создание стандартного человека нулевого уровня
-        public Human(int freePoints, List<string> currentBasicSkills, Nationality nationality, Race race) : base()
-        {
-            SetFreePoints(freePoints);
-            GetBasicSkills(currentBasicSkills);
-        }
+        ////Создание человека определенного уровня
+        //public Human(int freePoints) : base()
+        //{
+        //    SetFreePoints(freePoints);
+        //}
 
         //Создание рандомного человека нулевого уровня
-        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
-            List<string> currentBasicSkills, Nationality nationality, Race race)
-            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills, nationality, race)
+        public Human(List<string> basicSkills, Nationality nationality, Race race)
+            : base(basicSkills, nationality, race)
         {
             SetFreePoints(0);
         }
 
-        //Создание собственного человека
-        public Human(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
-            int freePoints, List<string> currentBasicSkills, Nationality nationality, Race race) 
-            : base(name, strength, agility, intelligent, endurance, lucky, currentBasicSkills, nationality, race)
+        //Создание радномного человека определенного уровня
+        public Human(List<string> basicSkills, Nationality nationality, Race race, 
+            int freePoints) : base(basicSkills, nationality, race)
+        {
+            SetFreePoints(freePoints);
+        }
+
+        //Создание собственного человека с определенным уровнем
+        public Human(float strength, float agility, float intelligent, float endurance, float lucky, 
+            int freePoints, List<string> basicSkills, Nationality nationality, Race race) 
+            : base(strength, agility, intelligent, endurance, lucky, basicSkills, nationality, race)
         {
             SetFreePoints(freePoints);
         }

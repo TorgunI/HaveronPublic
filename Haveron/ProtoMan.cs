@@ -28,7 +28,6 @@ namespace Haveron
         public float PersonalDamage { get; protected set; }
         public float ProtactionPointer { get; protected set; }
         public float PersonalInitiation { get; protected set; }
-        public float Accurasy { get; protected set; }
 
         public float HeadHealth { get; protected set; }
         public float BodyHealth { get; protected set; }
@@ -62,7 +61,6 @@ namespace Haveron
             OD = (Agility.Value + Endurance.Value) / 2;
             PersonalInitiation = (Intelligent.Value + Agility.Value) / 2;
             PersonalDamage = (Strength.Value + Agility.Value) / 5;
-            Accurasy = (Intelligent.Value + Agility.Value) / 5;
             ProtactionPointer = (Strength.Value + Agility.Value + Endurance.Value) / 3;
 
             HeadHealth = HP * 0.1f;
@@ -94,19 +92,20 @@ namespace Haveron
             };
         }
 
-        //Custom Player
-        public ProtoMan(string name, float strength, float agility, float intelligent, float endurance, float lucky, 
-            List<string> currentBasicSkills, Nationality nationality, Race race)
+        //Player lvl 0
+        public ProtoMan(List<string> basicSkills, Nationality nationality, Race race) : this()
         {
-            Name = name;
             Race = race;
             Nationality = nationality;
+            _basicSkills = basicSkills;
+        }
 
-            //Strength = new Stat("Сила", strength, StatType.Strength);
-            //Agility = new Stat("Ловкость", agility, StatType.Agility);
-            //Intelligent = new Stat("Интеллект", intelligent, StatType.Intelligent);
-            //Endurance = new Stat("Выносливость", endurance, StatType.Endurance);
-            //Lucky = new Stat("Удача", lucky, StatType.Lucky);
+        //Custom Player
+        public ProtoMan(float strength, float agility, float intelligent, float endurance, float lucky, 
+            List<string> basicSkills, Nationality nationality, Race race) : this()
+        {
+            Race = race;
+            Nationality = nationality;
 
             Strength.SetValue(strength);
             Agility.SetValue(agility);
@@ -114,43 +113,12 @@ namespace Haveron
             Endurance.SetValue(endurance);
             Lucky.SetValue(lucky);
 
-            //HP = (Strength.Value + Agility.Value + Endurance.Value) * 2;
-            //Mana = (Intelligent.Value + Endurance.Value) / 2;
-            //OD = (Agility.Value + Endurance.Value) / 2;
-            //PersonalInitiation = (Intelligent.Value + Agility.Value) / 2;
-            //PersonalDamage = (Strength.Value + Agility.Value) / 5;
-            //Accurasy = (Intelligent.Value + Agility.Value) / 5;
-            //ProtactionPointer = (Strength.Value + Agility.Value + Endurance.Value) / 3;
+            _basicSkills = basicSkills;
+        }
 
-            //HeadHealth = HP * 0.1f;
-            //BodyHealth = HP * 0.3f;
-            //StomachHealth = HP * 0.2f;
-            //RightHandHealth = HP * 0.1f;
-            //LeftHandHealth = HP * 0.1f;
-            //RightLegHealth = HP * 0.1f;
-            //LeftLegHealth = HP * 0.1f;
-
-            //_stats = new List<Stat>()
-            //{
-            //    Strength,
-            //    Agility,
-            //    Intelligent,
-            //    Endurance,
-            //    Lucky
-            //};
-
-            //_limbsHealth = new List<float>()
-            //{
-            //    HeadHealth,
-            //    BodyHealth,
-            //    StomachHealth,
-            //    RightHandHealth,
-            //    LeftLegHealth,
-            //    RightLegHealth,
-            //    LeftLegHealth
-            //};
-
-            _basicSkills = currentBasicSkills;
+        public void SetName(string name)
+        {
+            Name = name;
         }
 
         public Stat GetStatByType(StatType statType)
@@ -175,10 +143,10 @@ namespace Haveron
             FreePoints -= value;
         }
 
-        public void GetBasicSkills(List<string> playerBasicSkills)
-        {
-            _basicSkills = playerBasicSkills;
-        }
+        //public void GetBasicSkills(List<string> playerBasicSkills)
+        //{
+        //    _basicSkills = playerBasicSkills;
+        //}
 
         //public void IncreaseNationalityPoints()
         //{
@@ -192,7 +160,6 @@ namespace Haveron
             OD = (Agility.Value + Endurance.Value) / 2;
             PersonalInitiation = (Intelligent.Value + Agility.Value) / 2;
             PersonalDamage = (Strength.Value + Agility.Value) / 5;
-            Accurasy = (Intelligent.Value + Agility.Value) / 5;
             ProtactionPointer = (Strength.Value + Agility.Value + Endurance.Value) / 3;
 
             HeadHealth = HP * 0.1f;
@@ -247,7 +214,6 @@ namespace Haveron
                 $"OD: {OD};\n" +
                 $"Личная Инициация: {PersonalInitiation};\n" +
                 $"Личный Урон:{PersonalDamage};\n" +
-                $"Точность: {Accurasy}\n" +
                 $"Показатель Защиты: {ProtactionPointer}\n");
         }
 

@@ -25,11 +25,14 @@ namespace Haveron
                 Console.WriteLine("[1] - Выбрать игрока из списка\n" +
                     "[2] - Изменить характеристику\n" +
                     "[3] - Вывести список игроков\n" +
-                    "[4] - Создать радомного игрока\n" +
+                    "[4] - Создать игрока\n" +
                     "[5] - Очистить список персонажей");
                 Console.Write("Ввод: ");
 
-                switch (Console.ReadLine())
+                string userChoice = Console.ReadLine();
+
+                //Console.Clear();
+                switch (userChoice)
                 {
                     case "1":
                         _playerBuilder.ChoosePlayer();
@@ -41,7 +44,7 @@ namespace Haveron
                         _playerBuilder.ShowPlayersList();
                         break;
                     case "4":
-                        _playerBuilder.CreatePlayer();
+                        _playerBuilder.CreationPlayerMenu();
                         break;
                     case "5":
                         _playerBuilder.ClearPlayersList();
