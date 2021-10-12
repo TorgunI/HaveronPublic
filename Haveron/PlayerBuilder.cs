@@ -19,7 +19,6 @@ namespace Haveron
 
         private int _playerID { get; set; }
 
-
         public PlayerBuilder()
         {
             _skillBuilder = new SkillBuilder();
@@ -132,7 +131,8 @@ namespace Haveron
             if ((IsIntRead(out int userValue)) && IsCharRead(out char userSign) &&
                 (userSign == '-' || userSign == '+'))
             {
-                _players[_playerID].GetStatByType((StatType)userInput).ChangeValue(userValue, userSign);
+                //_players[_playerID].GetStatByType((StatType)userInput).ChangeValue(userValue, userSign);
+                _players[_playerID].GetStatByType((StatType)userInput).SetValue(userValue);
                 _players[_playerID].Update();
             }
         }
@@ -270,7 +270,6 @@ namespace Haveron
 
             ProtoMan player = new Human(strength, agility, intelligent, endurance, lucky, freePoints, _skillBuilder.GetRandomBasicScills(),
                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
-            Balance(player);
             _players.Add(player);
         }
     }

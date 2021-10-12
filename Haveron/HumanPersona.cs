@@ -36,6 +36,7 @@ namespace Haveron
         {
             return _nationalities[_random.Next(0, _nationalities.Count)];
         }
+
         public void GetSpecificNationality()
         {
 
