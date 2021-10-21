@@ -40,13 +40,16 @@ namespace Haveron
                     case "2":
                         _playerBuilder.ChangeValueStat();
                         break;
-                    case "3":
-                        _playerBuilder.ShowPlayersList();
-                        break;
+                    //case "3":
+                    //    _playerBuilder.Dis
+                    //    break;
                     case "4":
                         _playerBuilder.CreationPlayerMenu();
                         break;
                     case "5":
+                        _playerBuilder.ShowPlayersList();
+                        break;
+                    case "6":
                         _playerBuilder.ClearPlayersList();
                         break;
                     default:

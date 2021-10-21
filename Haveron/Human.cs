@@ -18,7 +18,7 @@ namespace Haveron
         public Human(List<string> basicSkills, Nationality nationality, Race race)
             : base(basicSkills, nationality, race)
         {
-            SetFreePoints(0);
+            SetFreePoints(2);
         }
 
         //Создание радномного человека определенного уровня

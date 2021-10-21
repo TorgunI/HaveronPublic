@@ -19,6 +19,10 @@ namespace Haveron
 
         private int _playerID { get; set; }
 
+//<<<<<<< HEAD
+        private const int _characterStatsNumber = 5;
+
+//>>>>>>> parent of db81c07 (Fix CreatePeculiarPlayer)
 
         public PlayerBuilder()
         {
@@ -71,20 +75,20 @@ namespace Haveron
                 distributiveStatValue = _random.Next(1, (int)stat.Value - 2);
                 player.GetStatByType(stat.StatType).ChangeValue(distributiveStatValue, '-');
 
-                player.GetStatByType((StatType)_random.Next(0, 5)).
+                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
                     ChangeValue(distributiveStatValue, '+');
             }
-            DistribuveFreeStat(player);
+            DistributiveFreeStat(player);
             player.Update();
         }
 
-        public void DistribuveFreeStat(ProtoMan player)
+        public void DistributiveFreeStat(ProtoMan player)
         {
             while (player.FreePoints != 0)
             {
                 int point = _random.Next(1, player.FreePoints);
 
-                player.GetStatByType((StatType)_random.Next(0, 5)).
+                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
                     ChangeValue((point), '+');
                 player.SubtractFreePoint(point);
             }
@@ -112,7 +116,7 @@ namespace Haveron
                 "[4] - Выносливость\n" +
                 "[5] - Удача");
 
-            if (IsIntRead(out userInput) == false && userInput > 5)
+            if (IsIntRead(out userInput) == false && userInput > _characterStatsNumber)
             {
                 Console.WriteLine("Такого стата нет!");
                 return false;
@@ -132,7 +136,35 @@ namespace Haveron
             if ((IsIntRead(out int userValue)) && IsCharRead(out char userSign) &&
                 (userSign == '-' || userSign == '+'))
             {
+//<<<<<<< HEAD
+                _players[_playerID].GetStatByType((StatType)userInput).SetValue(userValue);
+//=======
                 _players[_playerID].GetStatByType((StatType)userInput).ChangeValue(userValue, userSign);
+//>>>>>>> parent of db81c07 (Fix CreatePeculiarPlayer)
+                _players[_playerID].Update();
+            }
+        }
+
+        public void DistributeFreePoints()
+        {
+            if (_players[_playerID].FreePoints == 0)
+            {
+                Console.WriteLine("У выбранного игрока нет очков прокачки!");
+                return;
+            }
+
+            Console.WriteLine("Сколько нужно отнять очков прокачки?");
+            if(IsIntRead(out int userValue) == false && userValue > _players[_playerID].FreePoints)
+            {
+                Console.WriteLine("Превышено число очков прокачки!");
+                return;
+            }
+
+            Console.WriteLine("Выберите характеристику, которую нужно прокачать:");
+            if (IsStatChosed(out int userInput) )
+            {
+                _players[_playerID].DistributeFreePointsToCharacteristic(userValue, 
+                    _players[_playerID].GetStatByType((StatType)userInput));
                 _players[_playerID].Update();
             }
         }
@@ -248,19 +280,19 @@ namespace Haveron
             if (IsIntRead(out int strength) == false)
                 return;
 
-            Console.WriteLine("Укажите ловкости:");
+            Console.WriteLine("Укажите значение ловкости:");
             if (IsIntRead(out int agility) == false)
                 return;
 
-            Console.WriteLine("Укажите интеллекта:");
+            Console.WriteLine("Укажите значение интеллекта:");
             if (IsIntRead(out int intelligent) == false)
                 return;
 
-            Console.WriteLine("Укажите выносливости:");
+            Console.WriteLine("Укажите значение выносливости:");
             if (IsIntRead(out int endurance) == false)
                 return;
 
-            Console.WriteLine("Укажите удачи:");
+            Console.WriteLine("Укажите значение удачи:");
             if (IsIntRead(out int lucky) == false)
                 return;
 

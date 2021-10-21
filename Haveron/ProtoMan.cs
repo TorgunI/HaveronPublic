@@ -38,17 +38,19 @@ namespace Haveron
         public float LeftLegHealth { get; protected set; }
 
         public int FreePoints { get; protected set; }
+        public int Level { get; protected set; }
 
         private List<Stat> _stats;
         private List<float> _limbsHealth;
         private List<string> _basicSkills;
 
-        //Default Player
+        //Инициализация
         public ProtoMan() 
         {
             Name = "Man";
             Race = new Race("Человек", RaceType.Human);
             Nationality = new Nationality("Хаверон", NationalityType.Haveron);
+            Level = 0;
 
             Strength = new Stat("Сила", 5, StatType.Strength);
             Agility = new Stat("Ловкость", 5, StatType.Agility);
@@ -143,6 +145,12 @@ namespace Haveron
             FreePoints -= value;
         }
 
+        public void DistributeFreePointsToCharacteristic(int value, Stat stat)
+        {
+            FreePoints -= value;
+            stat.ChangeValue(value, '+');
+        }
+
         //public void GetBasicSkills(List<string> playerBasicSkills)
         //{
         //    _basicSkills = playerBasicSkills;
@@ -191,11 +199,23 @@ namespace Haveron
             };
         }
 
+        public void CheckLevel()
+        {
+            if(Level > 0)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    FreePoints++;
+                }
+            }
+        }
+
         public void ShowInfo()
         {
             Console.WriteLine($"Имя:{Name}\n" +
                 $"Раса: {Race.Name}\n" +
-                $"Национальность: {Nationality.Name}\n");
+                $"Национальность: {Nationality.Name}\n" +
+                $"Уровень: {Level}");
         }
 
         public void ShowStats()
