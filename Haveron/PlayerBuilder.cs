@@ -19,10 +19,7 @@ namespace Haveron
 
         private int _playerID { get; set; }
 
-//<<<<<<< HEAD
         private const int _characterStatsNumber = 5;
-
-//>>>>>>> parent of db81c07 (Fix CreatePeculiarPlayer)
 
         public PlayerBuilder()
         {
@@ -136,11 +133,7 @@ namespace Haveron
             if ((IsIntRead(out int userValue)) && IsCharRead(out char userSign) &&
                 (userSign == '-' || userSign == '+'))
             {
-//<<<<<<< HEAD
                 _players[_playerID].GetStatByType((StatType)userInput).SetValue(userValue);
-//=======
-                _players[_playerID].GetStatByType((StatType)userInput).ChangeValue(userValue, userSign);
-//>>>>>>> parent of db81c07 (Fix CreatePeculiarPlayer)
                 _players[_playerID].Update();
             }
         }
