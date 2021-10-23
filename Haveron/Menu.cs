@@ -25,7 +25,7 @@ namespace Haveron
                 _playerBuilder.ShowCurrentPlayer();
 
                 Console.WriteLine("[1] - Взаимодействие с выбранным персонажем\n" +
-                    "[2] - Взаимодействие со списком игроков" +
+                    "[2] - Взаимодействие со списком игроков\n" +
                     "[3] - Выход");
 
                 Console.Write("Ввод: ");
@@ -53,7 +53,8 @@ namespace Haveron
 
         private void RunPlayerMenu()
         {
-            Console.WriteLine("[1] - Изменить характеристику");
+            Console.WriteLine("\n[1] - Изменить характеристику\n" +
+                "[2] - Распределить очки уровня");
             Console.Write("Ввод: ");
 
             switch (Console.ReadLine())
@@ -61,7 +62,7 @@ namespace Haveron
                 case "1":
                     _playerBuilder.ChangeValueStat();
                     break;
-                case "3":
+                case "2":
                     _playerBuilder.DistributeFreePoints();
                     break;
                 default:
@@ -72,7 +73,7 @@ namespace Haveron
 
         private void RunPlayersListMenu()
         {
-            Console.WriteLine("[1] - Выбрать игрока из списка\n" +
+            Console.WriteLine("\n[1] - Выбрать игрока из списка\n" +
                     "[2] - Создать игрока\n" +
                     "[3] - Вывести список игроков\n" +
                     "[4] - Очистить список персонажей");

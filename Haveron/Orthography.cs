@@ -33,7 +33,7 @@ namespace Haveron
 
         public bool IsCharRead(out char sign)
         {
-            Console.Write("Введите знак: ");
+            Console.Write("Введите знак: + или -");
             if (char.TryParse(Console.ReadLine(), out sign) == false)
             {
                 Console.WriteLine("Введено неправильный знак ");

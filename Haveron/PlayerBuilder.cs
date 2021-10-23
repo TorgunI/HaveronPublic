@@ -24,8 +24,7 @@ namespace Haveron
                 return;
             }
 
-            if (_orthography.IsIntRead(out int userValue) && _orthography.IsCharRead(out char userSign) &&
-                (userSign == '-' || userSign == '+'))
+            if (_orthography.IsIntRead(out int userValue))
             {
                 _player.GetStatByType((StatType)userInput).SetValue(userValue);
                 _player.Update();
@@ -40,14 +39,14 @@ namespace Haveron
                 return;
             }
 
-            Console.WriteLine("Сколько нужно отнять очков прокачки?");
-            if (_orthography.IsIntRead(out int userValue) == false && userValue > _player.FreePoints)
+            Console.WriteLine($"Доступнные очки: {_player.FreePoints}. " +
+                $"Сколько нужно отнять очков прокачки?");
+            if (_orthography.IsIntRead(out int userValue) == false || userValue > _player.FreePoints)
             {
                 Console.WriteLine("Превышено число очков прокачки!");
                 return;
             }
 
-            Console.WriteLine("Выберите характеристику, которую нужно прокачать:");
             if (IsStatChosed(out int userInput))
             {
                 _player.DistributeFreePointsToCharacteristic(userValue,
@@ -77,7 +76,7 @@ namespace Haveron
 
         private bool IsStatChosed(out int userInput)
         {
-            Console.WriteLine("Выберите характеристику:\n" +
+            Console.WriteLine("\nВыберите характеристику:\n" +
                 "[1] - Сила\n" +
                 "[2] - Ловкость\n" +
                 "[3] - Интеллект\n" +

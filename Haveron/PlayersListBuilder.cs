@@ -144,7 +144,6 @@ namespace Haveron
 
             ProtoMan player = new Human(strength, agility, intelligent, endurance, lucky, freePoints, _skillBuilder.GetRandomBasicScills(),
                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
-            Balance(player);
             _players.Add(player);
         }
 
