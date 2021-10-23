@@ -20,3 +20,14 @@ C:\Users\Admin\Desktop\Haveron (1)\Haveron\obj\Debug\Haveron.exe.manifest
 C:\Users\Admin\Desktop\Haveron (1)\Haveron\obj\Debug\Haveron.application
 C:\Users\Admin\Desktop\Haveron (1)\Haveron\obj\Debug\Haveron.exe
 C:\Users\Admin\Desktop\Haveron (1)\Haveron\obj\Debug\Haveron.pdb
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\bin\Debug\Haveron.exe.config
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\bin\Debug\Haveron.exe.manifest
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\bin\Debug\Haveron.application
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\bin\Debug\Haveron.exe
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\bin\Debug\Haveron.pdb
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.exe.manifest
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.application
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.exe
+C:\Users\Admin\Desktop\Хаверон\Haveron (1)\Haveron\obj\Debug\Haveron.pdb

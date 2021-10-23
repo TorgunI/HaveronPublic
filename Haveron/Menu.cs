@@ -22,35 +22,21 @@ namespace Haveron
             {
                 _playerBuilder.ShowCurrentPlayer();
 
-                Console.WriteLine("[1] - Выбрать игрока из списка\n" +
-                    "[2] - Изменить характеристику\n" +
-                    "[3] - Вывести список игроков\n" +
-                    "[4] - Создать игрока\n" +
-                    "[5] - Очистить список персонажей");
+                Console.WriteLine("[1] - Взаимодействие с выбранным персонажем\n" +
+                    "[2] - Взаимодействие со списком игроков" +
+                    "[3] - Выход");
+
                 Console.Write("Ввод: ");
-
-                string userChoice = Console.ReadLine();
-
-                //Console.Clear();
-                switch (userChoice)
+                switch (Console.ReadLine())
                 {
                     case "1":
-                        _playerBuilder.ChoosePlayer();
+                        RunPlayerMenu();
                         break;
                     case "2":
-                        _playerBuilder.ChangeValueStat();
+                        RunPlayersListMenu();
                         break;
-                    //case "3":
-                    //    _playerBuilder.Dis
-                    //    break;
-                    case "4":
-                        _playerBuilder.CreationPlayerMenu();
-                        break;
-                    case "5":
-                        _playerBuilder.ShowPlayersList();
-                        break;
-                    case "6":
-                        _playerBuilder.ClearPlayersList();
+                    case "3":
+                        isRun = false;
                         break;
                     default:
                         Console.WriteLine("Неправильная команда!");
@@ -63,5 +49,51 @@ namespace Haveron
             }
         }
 
+        private void RunPlayerMenu()
+        {
+            Console.WriteLine("[1] - Изменить характеристику");
+            Console.Write("Ввод: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    _playerBuilder.ChangeValueStat();
+                    break;
+                case "3":
+                    _playerBuilder.DistributeFreePoints();
+                    break;
+                default:
+                    Console.WriteLine("Неправильная команда!");
+                    break;
+            }
+        }
+
+        private void RunPlayersListMenu()
+        {
+            Console.WriteLine("[1] - Выбрать игрока из списка\n" +
+                    "[2] - Создать игрока\n" +
+                    "[3] - Вывести список игроков\n" +
+                    "[4] - Очистить список персонажей");
+            Console.Write("Ввод: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    _playerBuilder.ChoosePlayer();
+                    break;
+                case "2":
+                    _playerBuilder.CreationPlayerMenu();
+                    break;
+                case "3":
+                    _playerBuilder.ShowPlayersList();
+                    break;
+                case "4":
+                    _playerBuilder.ClearPlayersList();
+                    break;
+                default:
+                    Console.WriteLine("Неправильная команда!");
+                    break;
+            }
+        }
     }
 }

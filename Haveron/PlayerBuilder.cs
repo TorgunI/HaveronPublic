@@ -58,39 +58,6 @@ namespace Haveron
             }
         }
 
-        public void Balance(ProtoMan player)
-        {
-            int distributiveStatValue;
-
-            for (int i = 0; i < 4; i++)
-            {
-                Stat stat = player.GetStatByType((StatType)i);
-
-                if (stat.Value < 2)
-                    break;
-
-                distributiveStatValue = _random.Next(1, (int)stat.Value - 2);
-                player.GetStatByType(stat.StatType).ChangeValue(distributiveStatValue, '-');
-
-                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
-                    ChangeValue(distributiveStatValue, '+');
-            }
-            DistributiveFreeStat(player);
-            player.Update();
-        }
-
-        public void DistributiveFreeStat(ProtoMan player)
-        {
-            while (player.FreePoints != 0)
-            {
-                int point = _random.Next(1, player.FreePoints);
-
-                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
-                    ChangeValue((point), '+');
-                player.SubtractFreePoint(point);
-            }
-        }
-
         public void ChoosePlayer()
         {
             ShowPlayersList();
@@ -102,25 +69,6 @@ namespace Haveron
 
             --userInput;
             _playerID = userInput;
-        }
-
-        private bool IsStatChosed(out int userInput)
-        {
-            Console.WriteLine("Выберите характеристику:\n" +
-                "[1] - Сила\n" +
-                "[2] - Ловкость\n" +
-                "[3] - Интеллект\n" +
-                "[4] - Выносливость\n" +
-                "[5] - Удача");
-
-            if (IsIntRead(out userInput) == false && userInput > _characterStatsNumber)
-            {
-                Console.WriteLine("Такого стата нет!");
-                return false;
-            }
-
-            --userInput;
-            return true;
         }
 
         public void ChangeValueStat()
@@ -204,7 +152,7 @@ namespace Haveron
             _players[_playerID].ShowBasicSkills();
         }
 
-        public bool IsPlayerChosen(out int userInput)
+        private bool IsPlayerChosen(out int userInput)
         {
             if (IsIntRead(out userInput) == false || userInput > _players.Count || userInput == 0)
             {
@@ -214,7 +162,7 @@ namespace Haveron
             return true;
         }
 
-        public bool IsIntRead(out int userInput)
+        private bool IsIntRead(out int userInput)
         {
             Console.Write("Введите число: ");
             if (int.TryParse(Console.ReadLine(), out userInput) == false || userInput < 0)
@@ -236,7 +184,7 @@ namespace Haveron
         //    return true;
         //}
 
-        public bool IsCharRead(out char sign)
+        private bool IsCharRead(out char sign)
         {
             Console.Write("Введите знак: ");
             if (char.TryParse(Console.ReadLine(), out sign) == false)
@@ -244,6 +192,24 @@ namespace Haveron
                 Console.WriteLine("Введено неправильный знак ");
                 return false;
             }
+            return true;
+        }
+        private bool IsStatChosed(out int userInput)
+        {
+            Console.WriteLine("Выберите характеристику:\n" +
+                "[1] - Сила\n" +
+                "[2] - Ловкость\n" +
+                "[3] - Интеллект\n" +
+                "[4] - Выносливость\n" +
+                "[5] - Удача");
+
+            if (IsIntRead(out userInput) == false && userInput > _characterStatsNumber)
+            {
+                Console.WriteLine("Такого стата нет!");
+                return false;
+            }
+
+            --userInput;
             return true;
         }
 
@@ -297,6 +263,39 @@ namespace Haveron
                _humanPersona.GetRandomNationality(), _humanPersona.GetRandomRace());
             Balance(player);
             _players.Add(player);
+        }
+
+        private void Balance(ProtoMan player)
+        {
+            int distributiveStatValue;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Stat stat = player.GetStatByType((StatType)i);
+
+                if (stat.Value < 2)
+                    break;
+
+                distributiveStatValue = _random.Next(1, (int)stat.Value - 2);
+                player.GetStatByType(stat.StatType).ChangeValue(distributiveStatValue, '-');
+
+                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
+                    ChangeValue(distributiveStatValue, '+');
+            }
+            DistributiveFreeStat(player);
+            player.Update();
+        }
+
+        private void DistributiveFreeStat(ProtoMan player)
+        {
+            while (player.FreePoints != 0)
+            {
+                int point = _random.Next(1, player.FreePoints);
+
+                player.GetStatByType((StatType)_random.Next(0, _characterStatsNumber)).
+                    ChangeValue((point), '+');
+                player.SubtractFreePoint(point);
+            }
         }
     }
 }

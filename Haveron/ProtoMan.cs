@@ -151,6 +151,11 @@ namespace Haveron
             stat.ChangeValue(value, '+');
         }
 
+        public void LevelUp()
+        {
+            FreePoints += 2;
+        }
+
         //public void GetBasicSkills(List<string> playerBasicSkills)
         //{
         //    _basicSkills = playerBasicSkills;
@@ -199,16 +204,16 @@ namespace Haveron
             };
         }
 
-        public void CheckLevel()
-        {
-            if(Level > 0)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    FreePoints++;
-                }
-            }
-        }
+        //public void CheckLevel()
+        //{
+        //    if(Level > 0)
+        //    {
+        //        for (int i = 0; i < 2; i++)
+        //        {
+        //            FreePoints++;
+        //        }
+        //    }
+        //}
 
         public void ShowInfo()
         {
