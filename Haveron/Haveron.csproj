@@ -75,13 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bank.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="HumanPersona.cs" />
     <Compile Include="Nationality.cs" />
     <Compile Include="Orthography.cs" />
     <Compile Include="PlayerBuilder.cs" />
-    <Compile Include="PlayerListBuilder1.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="PlayersListBuilder.cs" />
     <Compile Include="Race.cs" />
