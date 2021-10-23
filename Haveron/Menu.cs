@@ -8,11 +8,13 @@ namespace Haveron
 {
     class Menu
     {
-        PlayerBuilder _playerBuilder;
+        private PlayersListBuilder _playersListBuilder;
+        private PlayerBuilder _playerBuilder;
 
         public Menu()
         {
-            _playerBuilder = new PlayerBuilder();
+            _playersListBuilder = new PlayersListBuilder();
+            _playerBuilder = new PlayerBuilder(_playersListBuilder.GetChosenPlayer(0));
         }
 
         public void Run()
@@ -79,16 +81,17 @@ namespace Haveron
             switch (Console.ReadLine())
             {
                 case "1":
-                    _playerBuilder.ChoosePlayer();
+                    if(_playersListBuilder.IsPlayerChosen(out int playerIndex))
+                        _playerBuilder = new PlayerBuilder(_playersListBuilder.GetChosenPlayer(playerIndex));
                     break;
                 case "2":
-                    _playerBuilder.CreationPlayerMenu();
+                    _playersListBuilder.CreationPlayerMenu();
                     break;
                 case "3":
-                    _playerBuilder.ShowPlayersList();
+                    _playersListBuilder.ShowPlayersList();
                     break;
                 case "4":
-                    _playerBuilder.ClearPlayersList();
+                    _playersListBuilder.ClearPlayersList();
                     break;
                 default:
                     Console.WriteLine("Неправильная команда!");
