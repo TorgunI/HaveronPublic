@@ -54,7 +54,8 @@ namespace Haveron
         private void RunPlayerMenu()
         {
             Console.WriteLine("\n[1] - Изменить характеристику\n" +
-                "[2] - Распределить очки уровня");
+                "[2] - Распределить очки уровня\n" +
+                "[5] - Выход из меню персонажа");
             Console.Write("Ввод: ");
 
             switch (Console.ReadLine())
@@ -64,6 +65,8 @@ namespace Haveron
                     break;
                 case "2":
                     _playerBuilder.DistributeFreePoints();
+                    break;
+                case "5":
                     break;
                 default:
                     Console.WriteLine("Неправильная команда!");
@@ -76,7 +79,8 @@ namespace Haveron
             Console.WriteLine("\n[1] - Выбрать игрока из списка\n" +
                     "[2] - Создать игрока\n" +
                     "[3] - Вывести список игроков\n" +
-                    "[4] - Очистить список персонажей");
+                    "[4] - Очистить список персонажей\n" +
+                    "[5] - Выход из меню персонажа");
             Console.Write("Ввод: ");
 
             switch (Console.ReadLine())
@@ -93,6 +97,8 @@ namespace Haveron
                     break;
                 case "4":
                     _playersListBuilder.ClearPlayersList();
+                    break;
+                case "5":
                     break;
                 default:
                     Console.WriteLine("Неправильная команда!");
