@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace Haveron
 {
-    enum NationalityType
-    {
-        Haveron,
-        Empire,
-        Inea
-    }
-
     class Nationality
     {
         public string Name { get; private set; }
@@ -25,5 +18,12 @@ namespace Haveron
             //Value = value;
             NationalityType = nationalityType;
         }
+    }
+
+    enum NationalityType
+    {
+        Haveron,
+        Empire,
+        Inea
     }
 }

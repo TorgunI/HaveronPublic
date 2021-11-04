@@ -75,8 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Individuality.cs" />
     <Compile Include="Human.cs" />
-    <Compile Include="HumanPersona.cs" />
+    <Compile Include="Lineage.cs" />
+    <Compile Include="LineageGenerator.cs" />
     <Compile Include="Nationality.cs" />
     <Compile Include="Orthography.cs" />
     <Compile Include="PlayerBuilder.cs" />

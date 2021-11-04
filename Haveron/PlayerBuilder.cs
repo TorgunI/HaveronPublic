@@ -11,10 +11,23 @@ namespace Haveron
         private ProtoMan _player;
         private Orthography _orthography;
 
+        private bool isInfoDisplayed;
+        private bool isStatsDisplayed;
+        private bool isCharacteristicsDisplayed;
+        private bool isBasicSkillsDisplayed;
+        private bool IsLimbsHealthDisplayed;
+
         public PlayerBuilder(ProtoMan player)
         {
             _player = player;
             _orthography = new Orthography();
+
+            isInfoDisplayed = true;
+            isStatsDisplayed = true;
+            isCharacteristicsDisplayed = true;
+            isBasicSkillsDisplayed = false;
+            IsLimbsHealthDisplayed = true;
+
         }
 
         public void ChangeValueStat()
@@ -54,24 +67,86 @@ namespace Haveron
                 _player.Update();
             }
         }
+        
+        public void DisplayOutputSelection()
+        {
+            Console.Clear();
+
+            bool isUserChoses = true;
+
+            while(isUserChoses)
+            {
+                Console.WriteLine("Настройте вывод информации об игроке:\n" +
+                    "[1] - Основная информация о внешности\n" +
+                    "[2] - Характеристики\n" +
+                    "[3] - Статы\n" +
+                    "[4] - Здоровье конечностей\n" +
+                    "[5] - Базовые скиллы\n" +
+                    "[6] - Выход");
+                Console.Write("Ввод: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        CustomizeDisplay(out isInfoDisplayed);
+                        break;
+                    case "2":
+                        CustomizeDisplay(out isCharacteristicsDisplayed);
+                        break;
+                    case "3":
+                        CustomizeDisplay(out isStatsDisplayed);
+                        break;
+                    case "4":
+                        CustomizeDisplay(out IsLimbsHealthDisplayed);
+                        break;
+                    case "5":
+                        CustomizeDisplay(out isBasicSkillsDisplayed);
+                        break;
+                    case "6":
+                        isUserChoses = false;
+                        break;
+                    default:
+                        Console.WriteLine("Ошибка!");
+                        break;
+                }
+
+            }
+        }
+
+        private void CustomizeDisplay(out bool isDisplayed)
+        {
+            Console.Write("Отображать информацию ?\n[1] - Да\n[2] - Нет\nВвод:");
+
+            if (Console.ReadLine() == "1")
+                isDisplayed = true;
+            else
+                isDisplayed = false;
+        }
 
         public void ShowCurrentPlayer()
         {
-            _player.ShowInfo();
+            if(isInfoDisplayed)
+                _player.ShowInfo();
 
-            _player.ShowStats();
-
+            if(isCharacteristicsDisplayed)
             _player.ShowCharacteristics();
 
-            //Работа с курсором для консоли| Вывод HP конечностей
-            int ConsoleX = Console.CursorLeft;
-            int ConsoleY = Console.CursorTop;
+            if(isStatsDisplayed)
+                _player.ShowStats();
 
-            _player.ShowLimbsHealth();
+            if(IsLimbsHealthDisplayed)
+            {
+                //Работа с курсором для консоли| Вывод HP конечностей
+                int ConsoleX = Console.CursorLeft;
+                int ConsoleY = Console.CursorTop;
 
-            Console.SetCursorPosition(ConsoleX, ConsoleY);
+                _player.ShowLimbsHealth();
 
-            _player.ShowBasicSkills();
+                Console.SetCursorPosition(ConsoleX, ConsoleY);
+            }
+
+            if(isBasicSkillsDisplayed)
+                _player.ShowBasicSkills();
         }
 
         private bool IsStatChosed(out int userInput)

@@ -11,6 +11,8 @@ namespace Haveron
         private PlayersListBuilder _playersListBuilder;
         private PlayerBuilder _playerBuilder;
 
+
+
         public Menu()
         {
             _playersListBuilder = new PlayersListBuilder();
@@ -55,6 +57,7 @@ namespace Haveron
         {
             Console.WriteLine("\n[1] - Изменить характеристику\n" +
                 "[2] - Распределить очки уровня\n" +
+                "[3] - Настройка вывода информации об игроке\n" +
                 "[5] - Выход из меню персонажа");
             Console.Write("Ввод: ");
 
@@ -65,6 +68,9 @@ namespace Haveron
                     break;
                 case "2":
                     _playerBuilder.DistributeFreePoints();
+                    break;
+                case "3":
+                    _playerBuilder.DisplayOutputSelection();
                     break;
                 case "5":
                     break;

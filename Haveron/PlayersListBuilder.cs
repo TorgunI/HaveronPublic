@@ -13,19 +13,17 @@ namespace Haveron
         private List<ProtoMan> _players;
 
         private SkillBuilder _skillBuilder;
-        private HumanPersona _humanPersona;
+        private LineageGenerator _humanPersona;
 
         private Orthography _orthography;
         private Random _random;
-
-        private int _playerID { get; set; }
 
         private const int _characterStatsNumber = 5;
 
         public PlayersListBuilder()
         {
             _skillBuilder = new SkillBuilder();
-            _humanPersona = new HumanPersona();
+            _humanPersona = new LineageGenerator();
 
             _players = new List<ProtoMan>()
             {
@@ -42,6 +40,7 @@ namespace Haveron
             Console.WriteLine($"[1] - Создание рандомного игрока нулевого уровня\n" +
                 $"[2] - Создание радномного человека определенного уровня\n" +
                 $"[3] - Создание собственного игрока\n");
+            Console.Write("Ввод: ");
 
             switch (Console.ReadLine())
             {
@@ -91,7 +90,7 @@ namespace Haveron
             {
                 ++counter;
                 Console.WriteLine($"[{counter}] Имя: {player.Name}\n");
-                player.ShowStats();
+                player.ShowCharacteristics();
                 Console.WriteLine();
             }
         }

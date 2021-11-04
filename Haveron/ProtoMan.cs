@@ -13,8 +13,9 @@ namespace Haveron
     abstract class ProtoMan
     {
         public string Name { get; protected set; }
-        public Race Race { get; protected set; }
-        public Nationality Nationality { get; protected set; }
+
+        //public Race Race { get; protected set; }
+        //public Nationality Nationality { get; protected set; }
 
         public Stat Strength { get; protected set; }
         public Stat Agility { get; protected set; }
@@ -44,12 +45,18 @@ namespace Haveron
         private List<float> _limbsHealth;
         private List<string> _basicSkills;
 
+        private LineageGenerator _lineageGenerator;
+        private Lineage _lineage;
+
         //Инициализация
         public ProtoMan() 
         {
             Name = "Man";
-            Race = new Race("Человек", RaceType.Human);
-            Nationality = new Nationality("Хаверон", NationalityType.Haveron);
+
+            _lineageGenerator = new LineageGenerator();
+            _lineage = new Lineage(_lineageGenerator.GetRandomNationality(), _lineageGenerator.GetRandomRace(), 
+                _lineageGenerator.GetRandomIndividuality());
+
             Level = 0;
 
             Strength = new Stat("Сила", 5, StatType.Strength);
@@ -97,8 +104,8 @@ namespace Haveron
         //Player lvl 0
         public ProtoMan(List<string> basicSkills, Nationality nationality, Race race) : this()
         {
-            Race = race;
-            Nationality = nationality;
+            _lineage.Race = race;
+            _lineage.Nationality = nationality;
             _basicSkills = basicSkills;
         }
 
@@ -106,8 +113,8 @@ namespace Haveron
         public ProtoMan(float strength, float agility, float intelligent, float endurance, float lucky, 
             List<string> basicSkills, Nationality nationality, Race race) : this()
         {
-            Race = race;
-            Nationality = nationality;
+            _lineage.Race = race;
+            _lineage.Nationality = nationality;
 
             Strength.SetValue(strength);
             Agility.SetValue(agility);
@@ -218,12 +225,17 @@ namespace Haveron
         public void ShowInfo()
         {
             Console.WriteLine($"Имя:{Name}\n" +
-                $"Раса: {Race.Name}\n" +
-                $"Национальность: {Nationality.Name}\n" +
-                $"Уровень: {Level}");
+                $"Раса: {_lineage.Race.Name}\n" +
+                $"Национальность: {_lineage.Nationality.Name}\n" +
+                $"Возраст: {_lineage.Individuality.Age}\n" +
+                $"Вес: {_lineage.Individuality.Weight}\n" +
+                $"Телосложение: {_lineage.Individuality.Physique}\n" +
+                $"Черты характера: {_lineage.Individuality.Trait}\n" +
+                $"Особые черты характера: {_lineage.Individuality.SpecialTrait}\n" +
+                $"Уровень: {Level}\n");
         }
 
-        public void ShowStats()
+        public void ShowCharacteristics()
         {
             foreach (var stat in _stats)
             {
@@ -232,7 +244,7 @@ namespace Haveron
             Console.WriteLine();
         }
 
-        public void ShowCharacteristics()
+        public void ShowStats()
         {
             Console.WriteLine($"HP: {HP};\n" +
                 $"Mana: {Mana};\n" +
