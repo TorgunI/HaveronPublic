@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Haveron.exe" size="24544">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Haveron.exe" size="25056">
       <assemblyIdentity name="Haveron" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>So260j/U54qvgERMFD100mKCqdju6hnqF3mh2q0QQTU=</dsig:DigestValue>
+        <dsig:DigestValue>u9RsU2Fbd2v4SK0ZDd3wugoDQfK563sJ+QprL9/1Hcw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

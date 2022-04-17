@@ -27,7 +27,14 @@ namespace Haveron
             isCharacteristicsDisplayed = true;
             isBasicSkillsDisplayed = false;
             IsLimbsHealthDisplayed = true;
+        }
 
+        public void ChangePlayer(ProtoMan newPlayer)
+        {
+            if (_player == newPlayer && newPlayer != null)
+                Console.WriteLine("Ошибка выбора игрока");
+
+            _player = newPlayer;
         }
 
         public void ChangeValueStat()

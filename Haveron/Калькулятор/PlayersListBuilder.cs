@@ -35,8 +35,10 @@ namespace Haveron
             _random = new Random();
         }
 
-        public void CreationPlayerMenu()
+        public ProtoMan GetNewPlayer()
         {
+            ProtoMan lastPlayer = _players.Last();
+
             Console.WriteLine($"[1] - Создание рандомного игрока нулевого уровня\n" +
                 $"[2] - Создание радномного человека определенного уровня\n" +
                 $"[3] - Создание собственного игрока\n");
@@ -57,19 +59,24 @@ namespace Haveron
                     Console.WriteLine("Неправильная команда!");
                     break;
             }
+
+            if (_players.Last() == lastPlayer)
+                return null;
+
+            return _players.Last();
+
         }
 
-        public bool IsPlayerChosen(out int playerIndex)
+        public ProtoMan TryChoosePlayer()
         {
             ShowPlayersList();
 
-            if (_orthography.IsIntRead(out playerIndex) == false || playerIndex > _players.Count || playerIndex == 0)
+            if (_orthography.IsIntRead(out int playerIndex) == false || playerIndex > _players.Count || playerIndex == 0)
             {
                 Console.WriteLine("Такого игрока нет!");
-                return false;
             }
-            --playerIndex;
-            return true;
+
+            return _players[--playerIndex];
         }
 
         public ProtoMan GetChosenPlayer(int playerIndex)

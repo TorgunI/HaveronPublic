@@ -225,14 +225,14 @@ namespace Haveron
         public void ShowInfo()
         {
             Console.WriteLine($"Имя:{Name}\n" +
-                $"Раса: {_lineage.Race.Name}\n" +
-                $"Национальность: {_lineage.Nationality.Name}\n" +
+                //$"Раса: {_lineage.Race.Name}\n" +
+                //$"Национальность: {_lineage.Nationality.Name}\n" +
                 $"Возраст: {_lineage.Individuality.Age}\n" +
-                $"Вес: {_lineage.Individuality.Weight}\n" +
-                $"Телосложение: {_lineage.Individuality.Physique}\n" +
-                $"Черты характера: {_lineage.Individuality.Trait}\n" +
-                $"Особые черты характера: {_lineage.Individuality.SpecialTrait}\n" +
-                $"Уровень: {Level}\n");
+                $"Вес: {_lineage.Individuality.Weight}\n");
+                //$"Телосложение: {_lineage.Individuality.Physique}\n" +
+                //$"Черты характера: {_lineage.Individuality.Trait}\n" +
+                //$"Особые черты характера: {_lineage.Individuality.SpecialTrait}\n" +
+                //$"Уровень: {Level}\n");
         }
 
         public void ShowCharacteristics()
