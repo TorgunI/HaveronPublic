@@ -75,22 +75,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Individuality.cs" />
-    <Compile Include="Human.cs" />
-    <Compile Include="Lineage.cs" />
-    <Compile Include="LineageGenerator.cs" />
-    <Compile Include="Nationality.cs" />
-    <Compile Include="Orthography.cs" />
-    <Compile Include="PlayerBuilder.cs" />
+    <Compile Include="Калькулятор характеристик\CharacteristicCalculator.cs" />
+    <Compile Include="Калькулятор\Individuality.cs" />
+    <Compile Include="Калькулятор\Human.cs" />
+    <Compile Include="Калькулятор\Lineage.cs" />
+    <Compile Include="Калькулятор\LineageGenerator.cs" />
+    <Compile Include="Калькулятор\Nationality.cs" />
+    <Compile Include="Калькулятор\Orthography.cs" />
+    <Compile Include="Калькулятор\PlayerBuilder.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="PlayersListBuilder.cs" />
-    <Compile Include="Race.cs" />
-    <Compile Include="SkillBuilder.cs" />
-    <Compile Include="Stat.cs" />
+    <Compile Include="Калькулятор\PlayersListBuilder.cs" />
+    <Compile Include="Калькулятор\Race.cs" />
+    <Compile Include="Калькулятор\SkillBuilder.cs" />
+    <Compile Include="Калькулятор\Stat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProtoMan.cs" />
-    <Compile Include="StatBuilder.cs" />
+    <Compile Include="Калькулятор\ProtoMan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -111,5 +111,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
